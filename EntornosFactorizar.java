@@ -78,16 +78,27 @@ public class EntornosFactorizar {
         return total;
     }
 
-  
-    private double aplicarCuponDescuento(double total, String codigoCupon) {
-        if (codigoCupon.equals("CUPOFF")) {
-            total *= 0.8;
-        } else if (codigoCupon.equals("NAVIDAD2025")) {
-            total *= 0.75;
-        }
-        return total;
-    }
+  	private double aplicarCuponDescuento(double total, String codigoCupon) {
+		/*
+		 * if (codigoCupon.equals("CUPOFF")) { total *= 0.8; } else if
+		 * (codigoCupon.equals("NAVIDAD2025")) { total *= 0.75; }
+		 */
+		// creamos una variable descuento que dependiendo del cupon tendra un valor
+		// diferente , y devuelve el total con el descuento aplicado
+		double descuento;
+		switch (codigoCupon) {
+		case "CUPOFF":
+			descuento = 0.8;
+			break;
+		case "NAVIDAD2025":
+			descuento = 0.75;
+			break;
 
+		default:
+			descuento = 1.0; // No se aplica descuento
+		}
+		return total * descuento;
+	}
    
     private boolean validarProducto(String tipoProducto, String categoriaProducto) {//Usamos las coleccion set para eliminar los duplicados , 
 		//Con el .of introducimos los valores, significa que solo va a contener esos valores como por defecto 
