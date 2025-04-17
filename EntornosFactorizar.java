@@ -89,15 +89,18 @@ public class EntornosFactorizar {
     }
 
    
-    private boolean validarProducto(String tipoProducto, String categoriaProducto) {
-        if (tipoProducto.equals("Electronico") && categoriaProducto.equals("Smartphones")) {
-            return true;
-        } else if (tipoProducto.equals("Ropa") && categoriaProducto.equals("Hombre")) {
-            return true;
-        } else if (tipoProducto.equals("Ropa") && categoriaProducto.equals("Mujer")) {
-            return true;
-        }
-        return false;
+    private boolean validarProducto(String tipoProducto, String categoriaProducto) {//Usamos las coleccion set para eliminar los duplicados , 
+		//Con el .of introducimos los valores, significa que solo va a contener esos valores como por defecto 
+        //no puede agregar ni eliminar ni modificar nada de esa lisa
+		//, con el map lo comparamos por clave 
+		Set<String> categoriasElectronico = Set.of("Smartphones");
+		Set<String> categoriasRopa = Set.of("Hombre", "Mujer");
+
+		Map<String, Set<String>> productosValidos = Map.of(
+				"Electronico", categoriasElectronico,
+				"Ropa",categoriasRopa);
+
+		return productosValidos.containsKey(tipoProducto) && productosValidos.get(tipoProducto).contains(categoriaProducto);
     }
 
    
